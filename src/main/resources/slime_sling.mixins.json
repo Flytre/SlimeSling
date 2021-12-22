@@ -3,10 +3,7 @@
   "minVersion": "0.8",
   "package": "net.flytre.slime_sling.mixin",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "PlayerEntityMixin",
-    "LivingEntityMixin"
-  ],
+  "mixins": ["LivingEntityMixin", "PlayerEntityMixin"],
   "client": [
   ],
   "injectors": {

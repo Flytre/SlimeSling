@@ -1,7 +1,7 @@
 package net.flytre.slime_sling;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.flytre.slime_sling.network.BouncePacket;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.sound.SoundEvents;
@@ -16,7 +16,7 @@ public class BootsHandler {
         boolean isClient = entity.world.isClient;
 
         if (!entity.isSneaking() && entity.fallDistance > 2.0 && entity.isOnGround()) {
-            entity.fallDistance =  0.0F;
+            entity.fallDistance = 0.0F;
 
             if (isClient) {
                 entity.setVelocity(entity.getVelocity().x, entity.getVelocity().y * -0.9, entity.getVelocity().z);
@@ -24,7 +24,8 @@ public class BootsHandler {
                 double f = 0.91d + 0.04d;
                 // only slow down half as much when bouncing
                 entity.setVelocity(entity.getVelocity().x / f, entity.getVelocity().y, entity.getVelocity().z / f);
-                ClientPlayNetworking.send(SlimeSling.BOUNCE_PACKET, PacketByteBufs.empty());
+                if (entity instanceof ClientPlayerEntity)
+                    ((ClientPlayerEntity) entity).networkHandler.sendPacket(new BouncePacket());
             } else {
                 ci.cancel();
             }

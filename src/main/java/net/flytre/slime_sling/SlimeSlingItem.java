@@ -1,12 +1,10 @@
 package net.flytre.slime_sling;
 
-import io.netty.buffer.Unpooled;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.flytre.slime_sling.network.SlimeSlingPacket;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -69,13 +67,7 @@ public class SlimeSlingItem extends Item {
                     vec.z * -f);
 
             if (player instanceof ServerPlayerEntity) {
-                PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
-                buf.writeDouble(player.getVelocity().x);
-                buf.writeDouble(player.getVelocity().y);
-                buf.writeDouble(player.getVelocity().z);
-                buf.writeFloat(player.getYaw());
-                buf.writeFloat(player.getPitch());
-                ServerPlayNetworking.send((ServerPlayerEntity) player, SlimeSling.SLING_PACKET, buf);
+                ((ServerPlayerEntity) player).networkHandler.sendPacket(new SlimeSlingPacket(player));
             }
 
 //            player.playSound(Sounds.SLIME_SLING.getSound(), 1f, 1f);
