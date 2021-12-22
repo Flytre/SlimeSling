@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#S#",
+    "Z Z",
+    " Z "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "S": {
+      "item": "minecraft:slime_block"
+    },
+    "Z": {
+      "item": "minecraft:slime_ball"
+    }
+  },
+  "result": {
+    "item": "slime_sling:slime_sling",
+    "count": 1
+  }
+}

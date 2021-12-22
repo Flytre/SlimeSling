@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "slime_sling",
+  "version": "${version}",
+  "name": "SlimeSling",
+  "description": "Adds the Slime Sling and Slime Boots to fabric!",
+  "authors": [
+    "Flytre"
+  ],
+  "contact": {
+    "website": "https://www.flytre.net"
+  },
+  "license": "MIT",
+  "icon": "assets/slime_sling/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "net.flytre.slime_sling.client.SlimeSlingClient"
+    ],
+    "main": [
+      "net.flytre.slime_sling.SlimeSling"
+    ]
+  },
+  "mixins": [
+    "slime_sling.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.10.8",
+    "fabric": "*",
+    "minecraft": "1.17.x"
+  }
+}
